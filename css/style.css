@@ -7,8 +7,18 @@
 
 header{
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
+  align-items: center;
   padding: 15px;
+  height: 100px;
+}
+
+#start{
+  padding: 5px 10px;
+}
+
+#select{
+  padding: 5px 10px;
 }
 
 .main-wrapper{
@@ -25,6 +35,11 @@ header{
   width: 600px;
 }
 
+.square{
+  float: left;
+  border: 2px solid white;
+}
+
 footer{
   display: flex;
   justify-content: flex-start;
@@ -33,4 +48,27 @@ footer{
 
 .credit{
   margin-left: 100px;
+}
+
+.none{
+  display: none;
+}
+
+.block{
+  display: block;
+}
+
+.easy{
+  width: calc(100% / 10);
+  height: calc(100% / 10);
+}
+
+.hard{
+  width: calc(100% / 9);
+  height: calc(100% / 9);
+}
+
+.crazy{
+  width: calc(100% / 7);
+  height: calc(100% / 7);
 }
