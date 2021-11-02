@@ -30,7 +30,6 @@ header{
 }
 
 .container{
-  display: none;
   height: 600px;
   width: 600px;
 }
@@ -38,6 +37,9 @@ header{
 .square{
   float: left;
   border: 2px solid white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 footer{
@@ -56,6 +58,7 @@ footer{
 
 .block{
   display: block;
+  background: #000;
 }
 
 .easy{

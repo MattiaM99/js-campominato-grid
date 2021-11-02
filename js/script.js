@@ -23,3 +23,27 @@ btn.addEventListener("click", function(){
   }
 });
 
+
+function init(difficulty){
+  for (let i = 0; i < difficulty; i++){
+    const square = createSquare(container);
+    square.innerHTML = i + 1;
+    square.addEventListener("click", function(){
+      this.classList.add("block");
+      if(difficulty < 50){
+        this.classList.add("crazy");
+      }else if(difficulty < 82 && difficulty > 49){
+        this.classList.add("hard");
+      }else {
+        this.classList.add("easy");
+      }
+    });
+  }
+}
+
+function createSquare(target){
+  const square = document.createElement('div');
+  square.className = "square";
+  target.append(square);
+  return square;
+}
