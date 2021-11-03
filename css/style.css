@@ -21,25 +21,12 @@ header{
   padding: 5px 10px;
 }
 
-.main-wrapper{
+main{
   height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
   background-color: #7EFED5;
-}
-
-.container{
-  height: 600px;
-  width: 600px;
-}
-
-.square{
-  float: left;
-  border: 2px solid white;
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }
 
 footer{
@@ -74,4 +61,22 @@ footer{
 .crazy{
   width: calc(100% / 7);
   height: calc(100% / 7);
+}
+
+.griglia{
+  width: 500px;
+  height: 500px;
+}
+
+.cella{
+  float: left;
+  display:flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid black;
+  cursor: pointer;
+}
+
+.cella.clicked{
+
 }

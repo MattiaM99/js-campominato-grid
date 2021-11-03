@@ -1,49 +1,57 @@
-const container = document.querySelector('.container');
-const listNumber = [];
-const btn = document.querySelector("#start");
-const scegli = document.querySelector("#select");
-
-btn.addEventListener("click", function(){
-
-  let difficulty ;
-
-  let valoreSelect = scegli.value;
-
-  if (valoreSelect == "easy"){
-    difficulty = 'easy';
-    console.log(difficulty);
-    
-  } else if (valoreSelect == "hard"){
-    difficulty = 'hard';
-    console.log(difficulty);
-    
-  }else if (valoreSelect == "crazy"){
-    difficulty= 'crazy';
-    console.log(difficulty);
-  }
+document.getElementById('start').addEventListener('click', function() {
+  start()
 });
 
+function start(){
+  const levels = parseInt(document.getElementById('select').value);
+  const gridLevels = [100,81,49];
+  const numeroCelle = gridLevels[levels-1];
+  const cellClasses = ['easy', 'hard', 'crazy'];
+  const cellClass = cellClasses[levels-1];
+  const cellsPerRow = Math.sqrt(numeroCelle);
+  const BOMBS_NUMBER = 16;
+  const bombs = generateBombs();
+  console.log(cellsPerRow);
+  console.log(bombs);
+  console.log(numeroCelle);
+  console.log(cellClass);
+  document.querySelector('main').innerHTML ='';
+  generatePlayGround();
 
-function init(difficulty){
-  for (let i = 0; i < difficulty; i++){
-    const square = createSquare(container);
-    square.innerHTML = i + 1;
-    square.addEventListener("click", function(){
-      this.classList.add("block");
-      if(difficulty < 50){
-        this.classList.add("crazy");
-      }else if(difficulty < 82 && difficulty > 49){
-        this.classList.add("hard");
-      }else {
-        this.classList.add("easy");
-      }
-    });
+  // funzione che genera la griglia
+  function generatePlayGround(){
+    const griglia = document.createElement('div');
+    griglia.className = 'griglia';
+    for (let i = 0; i < numeroCelle; i++) {
+      const cella = document.createElement('div');
+      cella.className = 'cella';        
+      cella.innerHTML = `<span>${i}</span>`;                
+      const cellSize = `calc(100% / ${cellsPerRow})`;   
+      cella.style.width = cellSize;
+      cella.style.height = cellSize;
+      cella.addEventListener('click',function(){
+        this.classList.add('clicked');
+      })
+
+      griglia.append(cella);
+
+    }
+
+    document.querySelector('main').append(griglia);
   }
-}
 
-function createSquare(target){
-  const square = document.createElement('div');
-  square.className = "square";
-  target.append(square);
-  return square;
+  // funzione che genera le bombe
+  function generateBombs(){
+    const bombs = [];
+    console.log('bombs number', BOMBS_NUMBER);
+    while(bombs.length < BOMBS_NUMBER){
+      const bomb = getRandomInt(1, numeroCelle);
+      if(!bombs.includes(bomb)) bombs.push(bomb);
+    }
+    return bombs;
+  }
+};
+
+function getRandomInt(min, max){
+  return Math.floor(Math.random() * (max - min + 1) + min);
 }
